@@ -14,7 +14,7 @@ user_ids = list()
 movie_ids = list()
 
 df = pd.read_csv('data/film_3.csv')
-title_ids_with_tt = list(df['movie_id'])
+title_ids_with_tt = list(dict.fromkeys(df['movie_id']))
 for title_id_with_tt in title_ids_with_tt:
     title_id = re.findall('[0-9]+', title_id_with_tt)
     title_id = title_id[0]
@@ -49,6 +49,9 @@ for title_id in title_ids[0:5000]:
         a_range = 1
     else:
         a_range = int(num_of_review/25)
+    print('----------------------')
+    print("Url: ", url)
+
     for i in range(a_range):
         containers = soup.findAll('div', class_="review-container")
         for container in containers:
@@ -68,7 +71,6 @@ for title_id in title_ids[0:5000]:
             user_id = display_name_link['href']
             user_id = re.findall('[0-9]+', user_id)
             user_id = 'ur'+str(user_id[0])
-            title_id = 'tt'+str(title_id)
             ratings.append(rating)
             movie_ids.append(title_id)
             user_ids.append(user_id)
@@ -92,8 +94,6 @@ for title_id in title_ids[0:5000]:
         except:
             print('Cannot request url: ', load_more_url)
             print('++++++++++++++++++++++++')
-    print("Url: ", url)
-    print('----------------------')
 
     df = pd.DataFrame({
         'movie_id': movie_ids,
