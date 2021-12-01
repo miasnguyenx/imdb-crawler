@@ -18,9 +18,12 @@ movie_names = list()
 user_ids = list()
 movie_ids = list()
 index = 0
-df = pd.read_csv('data/film.csv')
+df = pd.read_csv('data/film_2.csv')
 title_ids = list(df['movie_id'])
-for title_id in title_ids[6:]:
+# print(title_ids.index(7991608))
+# exit()
+
+for title_id in title_ids[0:5000]:
     url = "https://www.imdb.com/title/tt"+str(title_id)+"/reviews?ref_=tt_ov_rt"
 
     page = requests.get(url)
@@ -66,7 +69,7 @@ for title_id in title_ids[6:]:
             display_name_link = display_name_link.find('a')
             user_id = display_name_link['href']
             user_id = re.findall('[0-9]+', user_id)
-            user_id = user_id[0]
+            user_id = str(user_id[0])
 
             user_names.append(name)
             movie_ids.append(title_id)
@@ -96,7 +99,7 @@ for title_id in title_ids[6:]:
         'rating': ratings,
         'user_name':user_names,
     })
-    df.to_csv('data/imdb_full_5.csv', index=False, encoding='utf-8')
+    df.to_csv('data/imdb_full_8.csv', index=False, encoding='utf-8')
 
 
 # <div class="lister-item mode-advanced">
