@@ -71,8 +71,11 @@ for title_id in title_ids[0:5000]:
             user_id = display_name_link['href']
             user_id = re.findall('[0-9]+', user_id)
             user_id = 'ur'+str(user_id[0])
+            
+            a_title_id = 'tt'+str(title_id)
+            
             ratings.append(rating)
-            movie_ids.append(title_id)
+            movie_ids.append(a_title_id)
             user_ids.append(user_id)
 
             print("Review No: ", len(ratings))
