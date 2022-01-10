@@ -8,7 +8,7 @@ movie_ids = list()
 genres = list()
 for i in range(0, 10000, 250):
     url = "https://www.imdb.com/search/title/?moviemeter=" + \
-        str(20001+i)+","+str(20251+i)+"&count=250"
+        str(1+i)+","+str(251+i)+"&count=250"
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -45,4 +45,4 @@ for i in range(0, 10000, 250):
         'movie_id': movie_ids,
         'genre': genres,
     })
-    df.to_csv('data/film_3.csv', index=False, encoding='utf-8')
+    df.to_csv('data/film_5.csv', index=False, encoding='utf-8')
