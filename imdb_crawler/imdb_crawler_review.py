@@ -1,4 +1,3 @@
-from typing import Container
 from bs4 import BeautifulSoup
 from requests.api import request
 import regex as re

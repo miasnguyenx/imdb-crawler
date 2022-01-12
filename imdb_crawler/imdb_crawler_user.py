@@ -6,7 +6,7 @@ import requests
 import regex as re
 
 
-df = pd.read_csv('data/imdb_full.csv')
+df = pd.read_csv('data/imdb_full_3.csv')
 ids = list(df['user_id'])
 # print(ids)
 # exit()
